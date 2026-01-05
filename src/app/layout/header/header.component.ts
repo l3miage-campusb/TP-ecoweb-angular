@@ -29,6 +29,8 @@ export class HeaderComponent {
   readonly currentUser = this.#authStore.selectors.user;
 
   confirmNavigation(url: string | any[]) {
+    const audio = new Audio('https://www.myinstants.com/media/sounds/mlg-airhorn.mp3');
+    audio.play().catch(() => {});
     const response = prompt('Es-tu VRAIMENT sûr de vouloir aller là-bas ? (Écris "oui" pour confirmer)');
     
     if (response?.toLowerCase() === 'oui') {
@@ -42,4 +44,7 @@ export class HeaderComponent {
       alert('Navigation annulée. Reste ici.');
     }
   }
+
+  
+
 }
