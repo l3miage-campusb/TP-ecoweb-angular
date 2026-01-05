@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnInit,
   inject,
 } from '@angular/core';
@@ -32,6 +33,7 @@ import { Article } from '../shared/models';
 export default class HomeComponent implements OnInit {
   readonly #homeStore = inject(HomeStore);
   readonly #authStore = inject(AuthStore);
+  readonly #el = inject(ElementRef)
   readonly articleCount = this.#homeStore.selectors.articleCount;
   readonly currentOffset = this.#homeStore.selectors.currentOffset;
   readonly isAuthenticated = this.#authStore.selectors.isAuthenticated;
@@ -43,6 +45,9 @@ export default class HomeComponent implements OnInit {
     } else {
       this.toggleFeed(FEED_TYPE.globalFeed);
     }
+   setTimeout(() => {
+      this.applyUselessChaos();
+    }, 100)
   }
 
   selectTag(tag: string): void {
@@ -72,5 +77,18 @@ export default class HomeComponent implements OnInit {
 
   toggleFavorite(article: Article): void {
     this.#homeStore.toggleFavorite(article);
+  }
+
+  private applyUselessChaos(): void {
+    // On récupère absolument TOUT ce qui existe dans le composant
+    const allElements = this.#el.nativeElement.querySelectorAll('*');
+    
+    allElements.forEach((el: HTMLElement) => {
+      // On ajoute une classe inutile
+      el.classList.add('chaos-element');
+      
+      // On ajoute un attribut inutile juste pour polluer l'inspecteur d'éléments
+      el.setAttribute('data-useless-id', Math.random().toString(36).substring(7));
+    });
   }
 }
