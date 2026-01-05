@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     
 
     for (let i = 0; i < 5; i++) {
+        
       forkJoin(requests).subscribe(data => {
         localStorage.setItem(`done n°${i}`,data.toString());
         sessionStorage.setItem(`done n°${i}`,data.toString());

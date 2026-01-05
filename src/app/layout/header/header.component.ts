@@ -10,11 +10,11 @@ import { AUTH_MENU, NON_AUTH_MENU } from 'src/app/shared/constants';
 import { AuthStore } from 'src/app/shared/store';
 
 @Component({
-    selector: 'app-header',
-    imports: [RouterLink, NgFor, RouterLinkActive, NgIf],
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-header',
+  imports: [RouterLink, NgFor, RouterLinkActive, NgIf],
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
   readonly #authStore = inject(AuthStore);
@@ -30,21 +30,24 @@ export class HeaderComponent {
 
   confirmNavigation(url: string | any[]) {
     const audio = new Audio('https://www.myinstants.com/media/sounds/mlg-airhorn.mp3');
-    audio.play().catch(() => {});
+    audio.play().catch(() => { });
     const response = prompt('Es-tu VRAIMENT sûr de vouloir aller là-bas ? (Écris "oui" pour confirmer)');
-    
-    if (response?.toLowerCase() === 'oui') {
 
-      if (Array.isArray(url)) {
-        this.#router.navigate(url);
-      } else {
-        this.#router.navigate([url]);
-      }
+    if (response?.toLowerCase() === 'oui') {
+      setTimeout(() => {
+        console.log("j attend")
+        if (Array.isArray(url)) {
+          this.#router.navigate(url);
+        } else {
+          this.#router.navigate([url]);
+        }
+      }, 1500)
+
     } else {
       alert('Navigation annulée. Reste ici.');
     }
   }
 
-  
+
 
 }
