@@ -35,7 +35,7 @@ import { CommentListComponent } from './ui/comment-list/comment-list.component';
         MarkdownPipe,
     ],
     templateUrl: './article-detail.component.html',
-    styleUrls: ['./article-detail.component.scss'],
+    styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [provideComponentStore(ArticleDetailStore)]
 })

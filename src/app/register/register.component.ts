@@ -20,7 +20,7 @@ import { TypedFormGroup } from '../shared/utils';
     selector: 'app-register',
     imports: [ReactiveFormsModule, FormErrorsComponent, RouterLink],
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss'],
+    styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class RegisterComponent implements OnDestroy {

@@ -17,7 +17,7 @@ import { TagListSelectComponent } from './tag-list-select/tag-list-select.compon
     selector: 'app-article-form',
     imports: [ReactiveFormsModule, TagListSelectComponent, FormErrorsComponent],
     templateUrl: './article-form.component.html',
-    styleUrls: ['./article-form.component.scss'],
+    styleUrls: [],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleFormComponent {
