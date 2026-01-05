@@ -1,5 +1,27 @@
+// Définition des animations "lourdes"
+@keyframes disco-glow {
+  0% { box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #00ffff; filter: hue-rotate(0deg); }
+  50% { box-shadow: 0 0 50px #00ffff, inset 0 0 30px #ff00ff; filter: hue-rotate(180deg); }
+  100% { box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #00ffff; filter: hue-rotate(360deg); }
+}
+
+@keyframes shake-it {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg) scale(1.1); }
+  75% { transform: rotate(-2deg) scale(0.9); }
+}
+
+@keyframes slide-infinite {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
 .banner {
-  background-color: var(--green-color);
+  // Un dégradé qui bouge tout seul
+  background: linear-gradient(-45deg, #5cb85c, #2e7d32, #1b5e20, #a2d0a2);
+  background-size: 400% 400%;
+  animation: slide-infinite 5s ease infinite, disco-glow 3s linear infinite;
+  
   text-align: center;
   color: #fff;
   padding: 2rem;
@@ -7,14 +29,42 @@
   width: 100%;
   left: 0;
   top: 58px;
+
   .title {
     font-family: var(--font-titillium);
     font-size: 3.5rem;
     padding-bottom: 0.5rem;
+    display: inline-block;
+    // Le titre tremble violemment
+    animation: shake-it 0.2s linear infinite;
+    text-shadow: 2px 2px 0px #ff00ff, -2px -2px 0px #00ffff;
   }
 
   .description {
     font-size: 1.5rem;
     font-weight: 300 !important;
+    // La description pulse doucement (mais c'est quand même trop)
+    animation: pulse 1s infinite alternate;
   }
+}
+
+// Pour les composants dans la liste
+.news-feed {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  &:hover {
+    transform: skewX(-5deg); // Pourquoi ? Parce qu'on peut.
+  }
+}
+
+app-article-list ::ng-deep .article-preview {
+  &:hover {
+    animation: shake-it 0.5s infinite;
+    background-color: rgba(255, 255, 0, 0.2) !important;
+  }
+}
+
+@keyframes pulse {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0.5; transform: scale(1.2); }
 }
